@@ -7,7 +7,9 @@ public class SearchFunctionImpl implements SearchFunction {
         int isMatched = 0;
         boolean stillMatches = true;
         int counter = 0;
-        while (stillMatches) {
+        while (true) {
+            if (counter >= key.length() || counter >= currentValue.length())
+                break;
             String currentKeyChar = Character.toString(key.charAt(counter));
             String currentValueChar = Character.toString(currentValue.charAt(counter));
             if (currentKeyChar.equalsIgnoreCase(currentValueChar)) {
