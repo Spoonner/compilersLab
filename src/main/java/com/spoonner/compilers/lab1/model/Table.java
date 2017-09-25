@@ -44,12 +44,7 @@ public class Table<T extends StringFormatter<T>> {
 
     public int binarySearch(TableItem item) throws NoSuchElementException {
 //        Collections.sort(itemList);
-        int index = Collections.binarySearch(itemList, item, new Comparator<TableItem>() {
-            @Override
-            public int compare(TableItem o1, TableItem o2) {
-                return o1.getKey().compareTo(o2.getKey());
-            }
-        });
+        int index = Collections.binarySearch(itemList, item, Comparator.comparing(TableItem::getKey));
         if (index >= 0) {
             return index;
         } else {
@@ -98,7 +93,6 @@ public class Table<T extends StringFormatter<T>> {
             return res;
         });
 
-        //TODO: check sort order
 
        /* int maxValue = entryResultSet.first().getValue();
         for (TableItem<T> item : itemList) {
@@ -118,15 +112,9 @@ public class Table<T extends StringFormatter<T>> {
         return searchRow(new TableItem<>(key), function, extractor);
     }
 
-    //TODO: collapse to lambda
     public void loadFromFile(String filename) {
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
-            stream.forEach(new Consumer<String>() {
-                @Override
-                public void accept(String s) {
-                    addRow(new TableItem<>(clazz).deserializeString(s));
-                }
-            });
+            stream.forEach(s -> addRow(new TableItem<>(clazz).deserializeString(s)));
         } catch (IOException e) {
             e.printStackTrace();
         }
