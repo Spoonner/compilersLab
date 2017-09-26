@@ -4,14 +4,18 @@ import com.spoonner.compilers.lab1.functions.ResultExtractor;
 import com.spoonner.compilers.lab1.functions.SearchFunction;
 import com.spoonner.compilers.lab1.serialization.StringFormatter;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.stream.Stream;
 
+/**
+ *
+ * @param <T> - data that table represents (same as in TableItems)
+ */
 public class Table<T extends StringFormatter<T>> {
 
     private List<TableItem<T>> itemList;
@@ -43,7 +47,6 @@ public class Table<T extends StringFormatter<T>> {
     }
 
     public int binarySearch(TableItem item) throws NoSuchElementException {
-//        Collections.sort(itemList);
         int index = Collections.binarySearch(itemList, item, Comparator.comparing(TableItem::getKey));
         if (index >= 0) {
             return index;
@@ -93,15 +96,6 @@ public class Table<T extends StringFormatter<T>> {
             return res;
         });
 
-
-       /* int maxValue = entryResultSet.first().getValue();
-        for (TableItem<T> item : itemList) {
-            if (searchFunction.matchCount(item.getKey(), keyRow.getKey()) == maxValue) {
-                searchMatchIndexes.add(itemList.indexOf(item));
-                break;
-            }
-        }
-       */
         TableItem<T> found = entryResultList.get(0).getKey();
         searchMatchIndexes.add(itemList.indexOf(found));
         return searchMatchIndexes;

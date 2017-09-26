@@ -1,11 +1,13 @@
 package com.spoonner.compilers.lab1.functions;
 
+//Search function implementation
+
+//First chars of the string ignoring case
 public class SearchFunctionImpl implements SearchFunction {
 
     @Override
     public int matchCount(String key, String currentValue) {
         int isMatched = 0;
-        boolean stillMatches = true;
         int counter = 0;
         while (true) {
             if (counter >= key.length() || counter >= currentValue.length())

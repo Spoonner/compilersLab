@@ -2,6 +2,9 @@ package com.spoonner.compilers.lab1.functions.data;
 
 import com.spoonner.compilers.lab1.serialization.StringFormatter;
 
+/**
+ * Model class to represent user data stored in NON KEY field of the table
+ */
 public class UserDataImpl implements StringFormatter<UserDataImpl> {
 
     private String data;
