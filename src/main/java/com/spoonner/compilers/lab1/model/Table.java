@@ -91,7 +91,7 @@ public class Table<T extends StringFormatter<T>> {
         Collections.sort(entryResultList, (o1, o2) -> {
             int res = o2.getValue() - o1.getValue();
             if (res == 0) {
-                return o2.getKey().getKey().compareTo(o1.getKey().getKey());
+                return o1.getKey().getKey().compareTo(o2.getKey().getKey());
             }
             return res;
         });
@@ -115,8 +115,10 @@ public class Table<T extends StringFormatter<T>> {
     }
 
     public void print() {
+        int i = 0;
         for (TableItem<T> item : itemList) {
-            System.out.println(item.toString());
+            System.out.println(i + "\t" + item.toString());
+            i++;
         }
     }
 
@@ -149,7 +151,7 @@ public class Table<T extends StringFormatter<T>> {
             if (itemList.get(i).equals(itemToFind))
                 return i;
         }
-        return -1;
+        throw new NoSuchElementException();
     }
 
     public int linearSearchByKey(String key) {

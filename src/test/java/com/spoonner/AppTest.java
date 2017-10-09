@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 public class AppTest {
 
     private Table<UserDataImpl> table = new Table<>(UserDataImpl.class);
-    private final String FILE_NAME = "dataFile.data";
+    private final String FILE_NAME = "data_60.data";
 
     public void initTable() {
         table.loadFromFile(FILE_NAME);
