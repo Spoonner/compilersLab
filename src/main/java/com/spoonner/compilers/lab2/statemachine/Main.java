@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        List<String> signalsStr = Arrays.asList("ltr", "cfr", "ltr", "ltr", "dlm", "cfr", "ltr");
+        List<String> signalsStr = Arrays.asList("dlm", "cfr", "cfr", "ltr", "ltr", "ltr", "dlm");
         System.out.println(">>>>Sending signal sequence: ");
         System.out.println(signalsStr+"\n\n");
         List<Signal> signalList = Converter.convertStringList(signalsStr);
